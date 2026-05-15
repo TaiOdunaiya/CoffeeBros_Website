@@ -449,7 +449,7 @@ span.swiper-pagination-bullet.swiper-pagination-bullet-active::after {
   font-size: 3rem;
   -webkit-text-stroke: 0.2rem #c49b63;
   color: transparent;
-  transition: all 0.3;
+  transition: all 0.3s;
   z-index: 100;
 }
 
@@ -718,7 +718,7 @@ footer {
   .customers-banner p {
     width: 60rem;
   }
-  client {
+  .client {
     height: 18rem;
   }
   .input-group {
@@ -742,7 +742,7 @@ footer {
     flex-direction: column;
     align-items: center;
   }
-  .details idv {
+  .details div {
     width: 20rem;
   }
   .about {

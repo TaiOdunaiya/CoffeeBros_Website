@@ -36,5 +36,5 @@ const startCount = el => {
     if (el.textContent === max) {
       clearInterval(count);
     }
-  }, 2000 / nums);
+  }, 2000 / nums.length);
 };
