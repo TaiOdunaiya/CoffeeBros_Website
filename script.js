@@ -14,10 +14,29 @@ const swiper = new Swiper('.swiper', {
 let menu = document.querySelector('.menu');
 let nums = document.querySelectorAll('.num');
 let start = false;
-window.addEventListener("scroll",()=>{
-  const navbar=document.querySelector(".navbar");
-  navbar.classList.toggle("sticky",window.scrollY > 0)
-})
+const navbar = document.querySelector('.navbar');
+const navToggle = document.querySelector('.nav-toggle');
+const navLinks = document.querySelectorAll('.navigation a');
+
+window.addEventListener('scroll', () => {
+  navbar.classList.toggle('sticky', window.scrollY > 0);
+});
+
+if (navToggle) {
+  navToggle.addEventListener('click', () => {
+    const open = navbar.classList.toggle('nav-open');
+    navToggle.setAttribute('aria-expanded', open);
+    navToggle.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+  });
+
+  navLinks.forEach((link) => {
+    link.addEventListener('click', () => {
+      navbar.classList.remove('nav-open');
+      navToggle.setAttribute('aria-expanded', 'false');
+      navToggle.setAttribute('aria-label', 'Open menu');
+    });
+  });
+}
 window.addEventListener('scroll', () => {
   if (window.scrollY >= menu.offsetTop) {
     if (!start) {

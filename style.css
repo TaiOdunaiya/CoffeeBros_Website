@@ -10,6 +10,16 @@
 
 html {
   font-size: 62.5%;
+  scroll-behavior: smooth;
+}
+
+body {
+  overflow-x: hidden;
+}
+
+img {
+  max-width: 100%;
+  display: block;
 }
 /* End of Default Styles */
 
@@ -22,16 +32,38 @@ html {
 /* Navigation */
 .navbar {
   width: 100%;
-  height: 10rem;
+  min-height: 8rem;
+  padding: 1rem 2rem;
   position: fixed;
   top: 0;
   left: 0;
   z-index: 100;
   display: flex;
-  justify-content: space-evenly;
+  justify-content: space-between;
   align-items: center;
+  gap: 1.5rem;
   border-bottom: 0.1rem solid rgba(255, 255, 255, 0.1);
   transition: all 0.5s;
+}
+
+.nav-toggle {
+  display: none;
+  background: transparent;
+  border: 0.1rem solid rgba(255, 255, 255, 0.4);
+  color: #fff;
+  width: 4.4rem;
+  height: 4.4rem;
+  cursor: pointer;
+  font-size: 2rem;
+  flex-shrink: 0;
+}
+
+.navigation {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 0.5rem 2rem;
 }
 
 .sticky.navbar {
@@ -77,10 +109,11 @@ html {
   font-size: 1.4rem;
   text-transform: uppercase;
   color: #eee;
-  margin-right: 3rem;
+  margin-right: 0;
   letter-spacing: 0.2rem;
   position: relative;
   transition: color 0.3s;
+  white-space: nowrap;
 }
 
 .navigation a:hover {
@@ -115,17 +148,20 @@ html {
 /* Landing */
 .landing {
   width: 100%;
-  height: 95vh;
+  min-height: 100vh;
   position: relative;
+  display: flex;
+  flex-direction: column;
 }
 
 .banner {
-  position: absolute;
-  top: 20%;
-  left: 50%;
-  transform: translateX(-50%);
+  position: relative;
   z-index: 100;
   text-align: center;
+  padding: 12rem 2rem 2rem;
+  width: 100%;
+  max-width: 90rem;
+  margin: 0 auto;
 }
 
 .main-heading {
@@ -137,20 +173,21 @@ html {
 
 .banner h1 {
   font-family: 'Josefin Sans', sans-serif;
-  font-size: 6rem;
+  font-size: clamp(2.4rem, 4.5vw, 6rem);
   font-weight: 400;
   text-transform: uppercase;
   color: #fff;
   margin: 2rem 0;
-  line-height: 1.5;
+  line-height: 1.3;
   letter-spacing: 0.2rem;
 }
 
 .banner p {
-  font-size: 1.5rem;
+  font-size: clamp(1.4rem, 2vw, 1.5rem);
   font-weight: 300;
   color: #fff;
-  width: 60rem;
+  width: 100%;
+  max-width: 60rem;
   margin: 0 auto 2rem auto;
   letter-spacing: 0.1rem;
 }
@@ -191,13 +228,21 @@ html {
 
 .swiper {
   width: 100%;
-  height: 85%;
+  flex: 1;
+  min-height: 40rem;
+  height: auto;
+}
+
+.swiper-wrapper,
+.swiper-slide {
+  height: 100%;
 }
 
 .swiper-slide img {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  object-position: center;
 }
 
 span.swiper-pagination-bullet {
@@ -231,20 +276,22 @@ span.swiper-pagination-bullet.swiper-pagination-bullet-active::after {
 }
 
 .landing-contact {
-  position: absolute;
-  top: 85%;
-  left: 0;
+  position: relative;
   width: 100%;
-  height: 15vh;
   background-color: #000;
   display: flex;
-  justify-content: space-evenly;
-  align-items: center;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 2rem 3rem;
+  padding: 3rem 2rem;
   color: #fff;
 }
 
 .details {
   display: flex;
+  flex: 1 1 24rem;
+  max-width: 36rem;
 }
 
 .details i {
@@ -268,24 +315,27 @@ span.swiper-pagination-bullet.swiper-pagination-bullet-active::after {
 .details div span:nth-child(2) {
   font-size: 1.4rem;
   color: #bbb;
-  width: 30rem;
+  max-width: 30rem;
 }
 /* End of Landing */
 
 /* About */
 .about {
   width: 100%;
-  height: 60vh;
+  min-height: auto;
+  padding: 6rem 2rem;
   background-color: #c49b63;
   display: flex;
-  align-items: center;
+  flex-wrap: wrap;
+  align-items: stretch;
   justify-content: center;
+  gap: 3rem;
 }
 
 .about div {
-  width: 30rem;
-  height: 35rem;
-  margin: 0 3rem;
+  width: min(30rem, 100%);
+  min-height: 28rem;
+  margin: 0;
   text-align: center;
   display: flex;
   flex-direction: column;
@@ -322,38 +372,44 @@ span.swiper-pagination-bullet.swiper-pagination-bullet-active::after {
 /* Menu */
 .menu {
   width: 100%;
-  height: 70vh;
+  min-height: auto;
+  padding: 6rem 3rem;
   background: linear-gradient(rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.9)),
     url(images/image8.jpg) center no-repeat;
   background-size: cover;
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
+  justify-content: center;
+  gap: 4rem;
 }
 
 .menu-left {
   text-align: right;
-  margin-right: 3rem;
-  width: 50%;
+  margin-right: 0;
+  width: min(55rem, 100%);
+  flex: 1 1 32rem;
 }
 
 .menu-left .main-heading {
-  font-size: 6rem;
+  font-size: clamp(4rem, 6vw, 6rem);
 }
 
 .menu-left h1 {
-  font-size: 6rem;
+  font-size: clamp(3rem, 5vw, 6rem);
   font-weight: 300;
   text-transform: uppercase;
   color: #fff;
-  margin-top: -4rem;
+  margin-top: -2rem;
 }
 
 .menu-left p {
   font-size: 1.4rem;
   color: #777;
-  width: 50rem;
+  width: 100%;
+  max-width: 50rem;
   margin: 2rem 0 4rem auto;
-  line-height: 1.2;
+  line-height: 1.6;
 }
 
 .menu-btn {
@@ -375,20 +431,22 @@ span.swiper-pagination-bullet.swiper-pagination-bullet-active::after {
 }
 
 .menu-right {
-  margin-left: 3rem;
-  width: 50%;
+  margin-left: 0;
+  width: min(52rem, 100%);
+  flex: 1 1 28rem;
 }
 
 .menu-right-images {
-  width: 60rem;
-  display: flex;
-  flex-wrap: wrap;
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1.5rem;
 }
 
 .menu-img-wrapper {
-  width: 25rem;
-  height: 25rem;
-  margin: 2rem;
+  width: 100%;
+  aspect-ratio: 1;
+  margin: 0;
   overflow: hidden;
 }
 
@@ -408,18 +466,22 @@ span.swiper-pagination-bullet.swiper-pagination-bullet-active::after {
 /* Data */
 .data {
   width: 100%;
-  height: 50vh;
+  min-height: auto;
+  padding: 6rem 2rem;
   background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.3)),
     url(images/image7.jpg) center no-repeat;
   background-size: cover;
   display: flex;
+  flex-wrap: wrap;
   justify-content: center;
   align-items: center;
+  gap: 3rem;
 }
 
 .data > div {
-  width: 25rem;
-  height: 30rem;
+  width: min(22rem, 100%);
+  min-height: 22rem;
+  height: auto;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -477,64 +539,74 @@ span.swiper-pagination-bullet.swiper-pagination-bullet-active::after {
 /* Customers */
 .customers {
   width: 100%;
-  height: 70vh;
+  min-height: auto;
+  padding: 8rem 2rem 4rem;
   background: linear-gradient(rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.8)),
     url(images/image8.jpg) center no-repeat;
   background-size: cover;
-  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4rem;
 }
 
 .customers-banner {
-  position: absolute;
-  top: 10%;
-  left: 50%;
-  transform: translateX(-50%);
+  position: relative;
   text-align: center;
+  width: min(70rem, 100%);
+  padding: 0 1rem;
 }
 
 .customers-banner .main-heading {
-  font-size: 6rem;
+  font-size: clamp(4rem, 6vw, 6rem);
   position: relative;
   z-index: 10;
 }
 
 .customers-banner h1 {
-  font-size: 6rem;
+  font-size: clamp(3rem, 5vw, 6rem);
   font-weight: 300;
   text-transform: uppercase;
   color: #fff;
-  margin-top: -4rem;
+  margin-top: -2rem;
 }
 
 .customers-banner p {
   font-size: 1.6rem;
   color: #777;
-  margin-top: 4rem;
-  line-height: 1.2;
+  margin-top: 2rem;
+  line-height: 1.6;
+  max-width: 60rem;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .clients {
-  position: absolute;
-  bottom: 0;
-  display: flex;
-  align-items: flex-end;
+  position: relative;
+  width: 100%;
+  max-width: 140rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(26rem, 1fr));
+  gap: 1.5rem;
+  align-items: stretch;
 }
 
 .client {
-  width: 25%;
-  height: 25rem;
+  width: 100%;
+  min-height: 22rem;
+  height: auto;
   background-color: #c49b63;
   padding: 2rem;
   color: #fff;
   position: relative;
+  display: flex;
+  flex-direction: column;
 }
 
-.client:nth-child(2) {
-  height: 31rem;
-}
-
+.client:nth-child(2),
 .client:nth-child(4) {
-  height: 21rem;
+  min-height: 22rem;
+  height: auto;
 }
 
 .client:nth-child(even) {
@@ -557,8 +629,8 @@ span.swiper-pagination-bullet.swiper-pagination-bullet-active::after {
 .client div {
   display: flex;
   align-items: center;
-  position: absolute;
-  bottom: 2rem;
+  margin-top: auto;
+  padding-top: 2rem;
 }
 
 .client div span {
@@ -570,23 +642,32 @@ span.swiper-pagination-bullet.swiper-pagination-bullet-active::after {
 /* Contact */
 .contact {
   width: 100%;
-  height: 60vh;
+  min-height: auto;
   background-color: #000;
   display: flex;
+  flex-wrap: wrap;
 }
 .contact-left {
   width: 50%;
-  height: 100%;
+  min-height: 40rem;
+  flex: 1 1 30rem;
   background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.4)),
     url(images/image1.jpg) center no-repeat;
   background-size: cover;
+  background-position: center;
 }
 .contact-right {
   width: 50%;
-  height: 100%;
+  flex: 1 1 32rem;
+  min-height: 40rem;
   display: flex;
   justify-content: center;
   align-items: center;
+  padding: 4rem 2rem;
+}
+.contact-right form {
+  width: 100%;
+  max-width: 68rem;
 }
 .contact-right h1 {
   font-size: 4rem;
@@ -596,10 +677,14 @@ span.swiper-pagination-bullet.swiper-pagination-bullet-active::after {
 }
 .input-group {
   display: flex;
+  flex-wrap: wrap;
+  gap: 0 1rem;
 }
 .input-group input,
 textarea {
-  width: 30rem;
+  width: 100%;
+  max-width: 30rem;
+  flex: 1 1 22rem;
   height: 5rem;
   padding: 1rem 1rem 2rem 0;
   margin: 2rem;
@@ -619,7 +704,8 @@ textarea::-webkit-scrollbar {
   color: #fff;
 }
 .contact-btn {
-  width: 30rem;
+  width: 100%;
+  max-width: 30rem;
   height: 6rem;
   background-color: #c49b63;
   color: #2a2727;
@@ -646,129 +732,191 @@ footer {
 /* End of Container */
 
 /* Responsive */
-@media (max-width: 1500px) {
-  html {
-    font-size: 55%;
-  }
-}
-@media (max-width: 1300px) {
-  html {
-    font-size: 50%;
-  }
-}
-@media (max-width: 1100px) {
-  html {
-    font-size: 45%;
+@media (min-width: 1100px) {
+  .landing {
+    min-height: 95vh;
+    display: block;
   }
 
-  .menu-img-wrapper {
-    width: 18rem;
-    height: 18rem;
+  .banner {
+    position: absolute;
+    top: 20%;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 0 2rem;
+    width: 90%;
   }
-  .customers {
-    height: 120vh;
-  }
-  .clients {
-    flex-direction: column;
-  }
-  .client {
+
+  .swiper {
+    position: absolute;
+    top: 0;
+    left: 0;
     width: 100%;
-    height: 15rem;
+    height: 85%;
+    min-height: 0;
   }
-  .client:nth-child(2) {
-    height: 15rem;
+
+  .landing-contact {
+    position: absolute;
+    top: 85%;
+    left: 0;
+    padding: 0 2rem;
+    min-height: 15vh;
+    flex-wrap: nowrap;
+    justify-content: space-evenly;
+    align-items: center;
+    gap: 0;
   }
-  .client:nth-child(4) {
-    height: 15rem;
+}
+
+@media (max-width: 992px) {
+  .nav-toggle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
+
+  .navigation {
+    position: fixed;
+    top: 8rem;
+    right: 0;
+    width: min(32rem, 85vw);
+    max-height: calc(100vh - 8rem);
+    overflow-y: auto;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0;
+    padding: 2rem;
+    background-color: rgba(0, 0, 0, 0.97);
+    border-left: 0.1rem solid rgba(255, 255, 255, 0.1);
+    transform: translateX(100%);
+    transition: transform 0.35s ease;
+  }
+
+  .navbar.nav-open .navigation {
+    transform: translateX(0);
+  }
+
+  .navigation a {
+    width: 100%;
+    padding: 1.2rem 0;
+    border-bottom: 0.1rem solid rgba(255, 255, 255, 0.08);
+  }
+
+  .menu-left {
+    text-align: center;
+  }
+
+  .menu-left p,
+  .menu-btn {
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .menu-left h1 {
+    margin-top: -1rem;
+  }
+
   .contact-left {
-    display: none;
+    width: 100%;
+    min-height: 28rem;
   }
+
   .contact-right {
     width: 100%;
   }
-  .input-group input,
-  textarea,
-  .contact-btn {
-    width: 40rem;
-  }
 }
-@media (max-width: 900px) {
-  .landing-contact div span:nth-child(2) {
-    display: none;
+
+@media (max-width: 768px) {
+  .banner {
+    padding-top: 10rem;
   }
-  .menu-right {
-    display: none;
+
+  .banner-btn {
+    display: block;
+    margin: 0.8rem auto;
   }
-  .menu-left {
-    width: 100%;
-    text-align: center;
-    margin: 0;
-  }
-  .menu-left p {
-    margin: 2rem auto 4rem auto;
-  }
-  .customers {
-    height: 140vh;
-  }
-  .customers h1 {
-    width: 50rem;
-    margin: auto;
-  }
-  .customers-banner p {
-    width: 60rem;
-  }
-  .client {
-    height: 18rem;
-  }
-  .input-group {
-    flex-direction: column;
-  }
-  .contact {
-    height: 120vh;
-  }
-  .input-group input,
-  textarea,
-  .contact-btn {
-    width: 60rem;
-  }
-}
-@media (max-width: 600px) {
-  html {
-    font-size: 35%;
-  }
+
   .landing-contact {
-    height: 15vh;
     flex-direction: column;
     align-items: center;
+    text-align: center;
   }
-  .details div {
-    width: 20rem;
-  }
-  .about {
-    height: 80vh;
+
+  .details {
     flex-direction: column;
+    align-items: center;
+    text-align: center;
+    max-width: 36rem;
   }
-  .about div {
-    width: 60rem;
-    margin: 0 2rem;
+
+  .details i {
+    margin-right: 0;
+    margin-bottom: 1rem;
   }
-  .customers {
-    height: 110vh;
+
+  .details div span:nth-child(2) {
+    max-width: 100%;
   }
-}
-@media (max-width: 450px) {
-  .logo {
-    display: none;
+
+  .menu {
+    padding: 5rem 2rem;
   }
-  .customers{
-    height: 120vh;
+
+  .menu-right-images {
+    grid-template-columns: 1fr;
+    max-width: 36rem;
+    margin: 0 auto;
+  }
+
+  .data > div {
+    width: min(28rem, 100%);
+  }
+
+  .clients {
+    grid-template-columns: 1fr;
+    max-width: 50rem;
+    margin: 0 auto;
+  }
+
+  .input-group {
+    flex-direction: column;
   }
 
   .input-group input,
   textarea,
   .contact-btn {
-    width: 60rem;
+    max-width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+@media (max-width: 480px) {
+  .navbar {
+    padding: 1rem 1.5rem;
+  }
+
+  .logo-text span:nth-child(1) {
+    font-size: 1.6rem;
+  }
+
+  .logo i {
+    font-size: 3rem;
+  }
+
+  .menu-left .main-heading {
+    font-size: 4.5rem;
+  }
+
+  .customers-banner .main-heading {
+    font-size: 4.5rem;
+  }
+
+  .copyright {
+    font-size: 1.3rem;
+    text-align: center;
+    padding: 0 1.5rem;
   }
 }
 /* End of Responsive */
